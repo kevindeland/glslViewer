@@ -433,6 +433,10 @@ void onMouseDrag(float _x, float _y, int _button) {
     }
 }
 
+void onMouseRelease(float _x, float _y){
+    
+}
+
 void onViewportResize(int _newWidth, int _newHeight) {
     cam.setViewport(_newWidth,_newHeight);
 }
