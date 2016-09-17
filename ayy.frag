@@ -57,7 +57,7 @@ void main(void) {
    //    y =( 0.5 * abs(cos(xxx * u_time)) * sin(4.0 * PI * st.x +  xxx * u_time)  + 0.5 ) ;
   // y = step(0.5 * sin(3.0 * u_time) + 0.5, st.x);
   //   y = smoothstep(0.1,0.9,st.x);
-   //y = abs(tan(1.0 * PI * u_time)) * (smoothstep(0.0, 0.5, st.x)- smoothstep(0.5, 1.0, st.x));
+   
    x = st.x;
    y = mod(x,0.3333); // return x modulo of 0.5
     y = fract(x * 3.0); // return only the fraction part of a number
@@ -70,7 +70,7 @@ void main(void) {
     //y = clamp(x,0.0,1.0); // constrain x to lie between 0.0 and 1.0
     //y = min(0.0,x);   // return the lesser of x and 0.0
     //y = max(0.0,x);   // return the greater of x and 0.0
-    
+    y = abs(sin(1.0 * PI * u_time)) * (smoothstep(0.0, 0.3, st.x)- smoothstep(0.5, 0.8, st.x));
    vec3 colorM = vec3(0.0, 1.0, 1.0);
    vec3 color = colorM * vec3(y);
    vec3 colorMinv = vec3(1.0 - colorM[0], 1.0 - colorM[1], 1.0 - colorM[2]);
@@ -80,10 +80,13 @@ void main(void) {
   float pct = plot(st, y); // plot ((x, y), x)
   color = (1.0 - pct) * color + pct * colorMinv;
   gl_FragColor = vec4(color, 1.0);
+
 }
 
-void nullmainEx1(void)
+void oldmain(void)
 {
+
+  gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);
   // dynamic shape size
   float mouse_dims = 20.0 * abs(sin(3.0 * u_time));
   float mouse_radius = 600.0 * abs(sin(3.0 * u_time));
